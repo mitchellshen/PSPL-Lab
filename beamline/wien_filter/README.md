@@ -18,4 +18,4 @@ Reads a Wien filter plate-potential scan and plots beam current against plate vo
 
 - **Input file:** `Wien-Filter-Plate-Potential-Scan__YYYY.MM.DD_N.txt`, two numeric columns: plate voltage (V) and picoammeter current (A). Set `path`, `yyyy`, `mm`, `dd` and `num` to pick the file.
 - **Processing:** the current is averaged at each voltage in `V_wien_seq` (0–256 V in 1 V steps, then 258–300 V in 2 V steps) and shifted so its minimum is zero. Change `V_wien_seq` if the scan used different steps.
-- **Output:** a two-panel figure (current in pA vs plate voltage, and vs mass in amu using the same `d`, `B` and `E`), saved at 300 dpi as `<scan file name>_v2.png` next to the data file.
+- **Output:** a two-panel figure (current in pA vs plate voltage, and vs mass in amu using the same `d`, `B` and `E`), titled with the beam energy `E` and saved at 300 dpi as `<scan file name>_v2.png` next to the data file. Set `E` to the energy the scan was taken at: the mass axis scales with it.
