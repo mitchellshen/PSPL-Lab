@@ -6,7 +6,7 @@ mp= 1.67262192369E-27;    % kg
 M_amu = 1.66E-27;
 d = 0.0090 %86%875;      % m
 B = 0.04;       % T
-E = 90;    % kV
+E = 90;    % V
 
 Ma_Xe = 131.290;
 Ma_Ar = 39.9480;    % amu, Ar+
@@ -68,7 +68,7 @@ plot(V_wien_seq,I_pico_seq,'-','linewidth', 1.6,'color', [0.8500 0.3250 0.0980])
 hold on; grid on;
 xlabel('Wien filter potential (V)')
 ylabel('Beam current (pA)')
-title('Ion source Wien filter scanning (Energy: 1kV)')
+title(sprintf('Ion source Wien filter scanning (Energy: %g V)', E))
 xticks(0:20:300)
 % ylim([0 0.1])
 set(gca,'lineWidth',1,'FontSize',14,'FontWeight','bold');
@@ -80,7 +80,7 @@ plot(amu,(I_pico_seq),'+','linewidth', 1.6,'color', [0.8500 0.3250 0.0980],'mark
 hold on; grid on;
 xlabel('Atomic mass (amu)')
 ylabel('Beam current (pA)')
-title('Ion source Wien filter scanning (Energy: 1kV)')
+title(sprintf('Ion source Wien filter scanning (Energy: %g V)', E))
 xticks([1 2:2:60]); xlim([1 60])
 % ylim([0 0.06])
 set(gca,'lineWidth',1,'FontSize',14,'FontWeight','bold');
