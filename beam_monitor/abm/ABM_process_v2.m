@@ -1,4 +1,4 @@
-% ABM_process_v2: same processing as ABM_process.m, but it finds your
+% ABM_process_v2: same processing as ABM_process_v1.m, but it finds your
 % Princeton OneDrive folder itself (Mac or Windows) instead of using a
 % fixed /Users/... path, so it runs on anyone's computer.
 clc; clear all; close all; format long;
