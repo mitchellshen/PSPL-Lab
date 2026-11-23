@@ -29,19 +29,20 @@ U = (d * sqrt((2*B^2*E*q) ./ ...
 %% PLOT WIEN FILTER PLATE POTENTIAL SCAN
 format long
 
-path = '/Users/mitchellshen/Downloads/';
+% Scan folder: your Downloads folder, or cfg.wien_scans in pspl_config.m.
+% pspl_data_dir needs pspl_setup run once per MATLAB session.
+% Scans from 2021 (e.g. 2021.10.27 #1) were in the Princeton Dropbox folder
+% Space-Lab-Starter-Kit/Ion-Beam-Calibration/WienFilter Scan.
+scan_dir = pspl_data_dir('wien_scans');
 num  = 2;
 yyyy = 2023;
 mm   = 02;
 dd   = 14;
-name = [path 'Wien-Filter-Plate-Potential-Scan__' ...
+name = fullfile(scan_dir, ['Wien-Filter-Plate-Potential-Scan__' ...
         num2str(yyyy) '.' num2str(mm,'%02d') '.' num2str(dd,'%02d') '_' num2str(num) ...
-        '.txt'];
+        '.txt']);
 % data = readtable(name);
 
-% folder = 'C:\Users\ms3648\Dropbox (Princeton)\Space-Lab-Starter-Kit\Ion-Beam-Calibration\WienFilter Scan\';
-% name = '/Users/mitchellshen/Downloads/Wien-Filter-Plate-Potential-Scan__2021.10.29_2.txt';
-% name = [folder 'Wien-Filter-Plate-Potential-Scan__2021.10.27_1.txt'];
 data = dlmread(name);
 
 V_wien = data(:,1);

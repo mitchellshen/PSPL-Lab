@@ -1,3 +1,6 @@
+# Your own data folders (copied from pspl_config_template.m)
+pspl_config.m
+
 # MATLAB editor autosave and backup files
 *.asv
 *.m~

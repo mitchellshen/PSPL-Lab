@@ -6,23 +6,23 @@ mon = 10; % month of ABM data recorded
 day = 24; % day   of ABM data recorded
 filenum_max = 2; % files of ABM data recorded
 
-% INPUT directories
-% dir = '/Users/mitchellshen/Dropbox (Personal)/ABM_JG-MMS/Hi-ABM log/';
-% dir = '/Users/mitchellshen/OneDrive - Princeton University/Beam_CAL_database/ABM/';
-% dir = '/Users/mitchellshen/OneDrive - Princeton University/IMAP-Lo_CAL_database/FM Cal/ABM_reference/T101_TOF_Cal/';
-% dir = '/Users/mitchellshen/OneDrive - Princeton University/IMAP-Lo_CAL_database/FM Cal/ABM_reference/T102_Pre-Cal1/';
-dir = '/Users/mitchellshen/OneDrive - Princeton University/IMAP-Lo_CAL_database/FM Cal/ABM_reference/T104_Pre-Cal2/';
-dir = ['/Users/mitchellshen/Library/CloudStorage/OneDrive-PrincetonUniversity/' ...
-       'IMAP-Lo_CAL_database/FM Cal/ABM_reference/T105_Final_Cal/'];
+% INPUT data folder, the one that holds the HVPS-ABM-Data-... folders.
+% pspl_data_dir finds your OneDrive folder; run pspl_setup once per MATLAB session first.
+% data_dir = fullfile(getenv('HOME'), 'Dropbox (Personal)', 'ABM_JG-MMS', 'Hi-ABM log');  % older Hi-ABM logs, personal Dropbox
+% data_dir = pspl_data_dir('onedrive', 'Beam_CAL_database', 'ABM');
+% data_dir = pspl_data_dir('onedrive', 'IMAP-Lo_CAL_database', 'FM Cal', 'ABM_reference', 'T101_TOF_Cal');
+% data_dir = pspl_data_dir('onedrive', 'IMAP-Lo_CAL_database', 'FM Cal', 'ABM_reference', 'T102_Pre-Cal1');
+% data_dir = pspl_data_dir('onedrive', 'IMAP-Lo_CAL_database', 'FM Cal', 'ABM_reference', 'T104_Pre-Cal2');
+data_dir = pspl_data_dir('onedrive', 'IMAP-Lo_CAL_database', 'FM Cal', 'ABM_reference', 'T105_Final_Cal');
 
 % INPUT settings
-folder=['HVPS-ABM-Data-20' num2str(yr,'%02d') '.' num2str(mon,'%02d') '.' num2str(day,'%02d') '/'];
+date_str = sprintf('20%02d.%02d.%02d', yr, mon, day);   % e.g. 2024.10.24
+folder   = ['HVPS-ABM-Data-' date_str];
 tbl = zeros(filenum_max,15);
 
 % PROCESSING
 for i = 1:filenum_max
-data = readtable([dir folder 'ABM-Counts_20' num2str(yr,'%02d') '.' num2str(mon,'%02d') '.' ...
-                  num2str(day,'%02d') '_' num2str(i) '.csv']);
+data = readtable(fullfile(data_dir, folder, ['ABM-Counts_' date_str '_' num2str(i) '.csv']));
 t0   = datetime(table2array(  data(1,1)),'InputFormat','MM/dd/yyyy/HH:mm:ss.S');
 t1   = datetime(table2array(data(end,1)),'InputFormat','MM/dd/yyyy/HH:mm:ss.S');
 ttol = seconds(t1-t0);       % time span
@@ -66,5 +66,5 @@ tbl(i,16) =  std(cts_N_bin(isfinite(cts_N_bin)))./...
 end
 
 % SAVE file
-writematrix(tbl,[dir 'tbl_' folder(15:end-1) '.txt'],'Delimiter','tab');
+writematrix(tbl, fullfile(data_dir, ['tbl_' date_str '.txt']), 'Delimiter', 'tab');
 disp('Process done');

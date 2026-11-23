@@ -4,7 +4,7 @@ Tools for the carbon-foil ABM's counts. Two CEMs (Aft and Fore) and their coinci
 
 ## Data files
 
-Raw data are not kept in this repo; they live on OneDrive (for example under `Beam_CAL_database/` or `IMAP-Lo_CAL_database/.../ABM_reference/`). Each acquisition day is a folder of numbered CSV files:
+Raw data are not kept in this repo; they live on OneDrive (for example under `Beam_CAL_database/` or `IMAP-Lo_CAL_database/.../ABM_reference/`), and `pspl_data_dir('onedrive', ...)` gives their full path on your computer. Each acquisition day is a folder of numbered CSV files:
 
 ```
 HVPS-ABM-Data-YYYY.MM.DD/
@@ -42,8 +42,8 @@ In the current setup `IN` is the Aft CEM and `OUT` is the Fore CEM. The analysis
 Example:
 
 ```matlab
-f = 'HVPS-ABM-Data-2024.12.06/ABM-Counts_2024.12.06_6.csv';
-[t, ~, ~, aft, fore, coin] = import_ABM_file(f);
+day_dir = pspl_data_dir('onedrive', 'Beam_CAL_database', 'Deceleration', 'HVPS-ABM-Data-2024.12.06');
+[t, ~, ~, aft, fore, coin] = import_ABM_file(fullfile(day_dir, 'ABM-Counts_2024.12.06_6.csv'));
 
 t1 = datetime(2024, 12, 6, 14, 30, 0);
 t2 = datetime(2024, 12, 6, 14, 40, 0);
@@ -54,9 +54,9 @@ beam_flux = A * F / C;   % absolute beam flux, counts/s
 
 ## Batch script: `ABM_process.m`
 
-Processes every file from one acquisition day. Edit the inputs at the top: `yr` (two-digit year, e.g. `24`), `mon`, `day`, `filenum_max` (number of files) and `dir` (the folder that contains `HVPS-ABM-Data-...`).
+Processes every file from one acquisition day. Edit the inputs at the top: `yr` (two-digit year, e.g. `24`), `mon`, `day` and `filenum_max` (number of files). Then choose `data_dir`, the folder that contains `HVPS-ABM-Data-...`, by uncommenting one of the `pspl_data_dir` lines or adding your own.
 
-It writes `tbl_YYYY.MM.DD.txt` into `dir`: tab-delimited, no header, one row per file.
+It writes `tbl_YYYY.MM.DD.txt` into `data_dir`: tab-delimited, no header, one row per file.
 
 | Column | Quantity |
 |---|---|

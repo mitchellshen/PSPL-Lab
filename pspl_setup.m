@@ -2,7 +2,7 @@ function pspl_setup()
 %PSPL_SETUP  Add the PSPL Lab tool folders to the MATLAB path.
 %   Run once per MATLAB session, from any folder:
 %
-%       run('path/to/PSPL_Lab/pspl_setup.m')
+%       run('path/to/PSPL-Lab/pspl_setup.m')
 %
 %   or type PSPL_SETUP when the repo folder is the current folder.
 %   To keep the folders on the path for future sessions, run SAVEPATH
@@ -18,4 +18,11 @@ folders = folders(~contains(inside, [filesep '.']));
 
 addpath(folders{:});
 fprintf('PSPL Lab: added %d folders to the MATLAB path.\n', numel(folders));
+
+% Say where the scripts will read data from, or how to set it
+try
+    fprintf('PSPL Lab: OneDrive data folder is %s\n', pspl_data_dir('onedrive'));
+catch err
+    fprintf('PSPL Lab: %s\n', err.message);
+end
 end
