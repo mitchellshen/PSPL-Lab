@@ -52,11 +52,12 @@ t2 = datetime(2024, 12, 6, 14, 40, 0);
 beam_flux = A * F / C;   % absolute beam flux, counts/s
 ```
 
-## Batch scripts: `ABM_process.m` and `ABM_process_v2.m`
+## Batch scripts: `ABM_process_v1.m` and `ABM_process_v2.m`
 
-Processes every file from one acquisition day. Edit the inputs at the top: `yr` (two-digit year, e.g. `24`), `mon`, `day`, `filenum_max` (number of files) and `dir` (the folder that contains `HVPS-ABM-Data-...`).
+Both process every file from one acquisition day in the same way. Edit the inputs at the top: `yr` (two-digit year, e.g. `24`), `mon`, `day` and `filenum_max` (number of files). Then pick the data folder, the one that contains `HVPS-ABM-Data-...`:
 
-`ABM_process_v2.m` does the same processing without a fixed `/Users/...` path: it finds your Princeton OneDrive folder on Mac or Windows, so it runs on anyone's computer. Choose the dataset by uncommenting one of its `data_dir` lines. If your OneDrive is somewhere unusual, set `onedrive` near the top.
+- `ABM_process_v1.m`: set `dir` to the folder's full path.
+- `ABM_process_v2.m`: uncomment one of the `data_dir` lines. It finds your Princeton OneDrive folder on Mac or Windows, so it runs on anyone's computer. If your OneDrive is somewhere unusual, set `onedrive` near the top.
 
 Both write `tbl_YYYY.MM.DD.txt` into the data folder: tab-delimited, no header, one row per file.
 

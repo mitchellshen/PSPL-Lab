@@ -20,7 +20,7 @@ Library for lab work in the Princeton Space Physics Laboratory: MATLAB tools for
 |---|---|---|
 | [`beamline/wien_filter/`](beamline/wien_filter) | Ion source Wien filter: plate voltage that passes each ion species, and plots of a plate-potential scan against voltage and mass | `Ion_source_Wien.m` |
 | [`beamline/deflection/`](beamline/deflection) | Gyroradius and sideways deflection of the beam in the beamline's magnetic fields | `gyroradiusCalculator.m`, derivation note (PDF) and slides |
-| [`beam_monitor/abm/`](beam_monitor/abm) | C-foil absolute beam monitor (ABM): count rates, absolute detection efficiency and absolute beam flux | `ABM_process.m` and `ABM_process_v2.m` (batch scripts), `import_ABM_file.m`, `determine_avg_ABM_rate.m` |
+| [`beam_monitor/abm/`](beam_monitor/abm) | C-foil absolute beam monitor (ABM): count rates, absolute detection efficiency and absolute beam flux | `ABM_process_v1.m` and `ABM_process_v2.m` (batch scripts), `import_ABM_file.m`, `determine_avg_ABM_rate.m` |
 
 Each folder's README covers inputs, outputs and data formats.
 
